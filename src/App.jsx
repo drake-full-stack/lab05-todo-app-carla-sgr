@@ -3,11 +3,10 @@ import "./App.css";
 
 function App() {
   // ===== Use State Variables =====
-  const [tasks, setTasks] = useState([
-    "Project 1",
-    "Laundry",
-    "Walk Dogs",
-    "clean room",
+  const [tasks, setTasks] = useState ([
+   {text:"Laundry", completed: false},
+   {text:"Project 1", completed: false},
+   {text:"Walk dog", completed: false},
   ]);
   const [inputValue, setInputValue] = useState("");
 
@@ -16,7 +15,8 @@ function App() {
     e.preventDefault();
 
     if (inputValue.trim()) {
-      setTasks([...tasks, inputValue]);
+      const new_tasks = {text:inputValue, completed:false}
+      setTasks([...tasks, {text: inputValue, completed: false}]);
     }
     setInputValue("");
   };
@@ -44,7 +44,7 @@ function App() {
       <ul className="task-list">
         {tasks.map((task, index) => (
           <li key={index} className="task-item">
-            <span className="task-text">{task}</span>
+            <span className="task-text">{task.text}</span>
             <button
               className="delete-button"
               onClick={() => handleDelete(index)}
